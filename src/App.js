@@ -23,7 +23,7 @@ class App extends Component {
     const echartsData = []
     const echartsX = []
     const d3 = []
-    for (let i = 0; i < 1000; i += 1){
+    for (let i = 0; i < 100; i += 1){
       const val = Math.floor(Math.random()*100)
       const tmp0 = {
         data: i,
