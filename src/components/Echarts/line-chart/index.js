@@ -1,19 +1,17 @@
 import React, { Component } from 'react';
 import echart from 'echarts'
-let t1
-let t2
 class LineChartEchart extends Component {
-  componentWillMount() {
-    t1 = window.performance.now()
-  }
   componentDidMount() {
-    const { data, x } = this.props;
-    console.log(data,x)
+    const { data} = this.props;
     var lineChart = echart.init(document.getElementById("lineEchart"))
+    const key = Object.keys(data)
     lineChart.setOption({
-      tooltip: {},
+      // tooltip: {
+      //   trigger:"axis"
+      // },
+      tooltip: false,
       xAxis: {
-        data:x
+        data:key
       },
       yAxis: {},
       grid: {
@@ -23,15 +21,15 @@ class LineChartEchart extends Component {
       series: [{
         name: 'x',
         type: 'line',
-        data: data
-      }]
+        data,
+        symbol: 'none'
+      }],
+      animation:false,
     })
-    t2 = window.performance.now()
-    console.log("Echart渲染时间：" + (t2 - t1) + "毫秒")
   }
   render() {
     return (
-      <div id="lineEchart" style={{ width: 10000, height: 500 }} />
+      <div id="lineEchart" style={{ width: 1000, height: 300 }} />
     );
   }
 }
